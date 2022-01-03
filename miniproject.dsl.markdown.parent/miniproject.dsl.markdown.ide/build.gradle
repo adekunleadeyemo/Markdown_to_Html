@@ -1,0 +1,5 @@
+dependencies {
+	compile project(':miniproject.dsl.markdown')
+	compile "org.eclipse.xtext:org.eclipse.xtext.ide:${xtextVersion}"
+	compile "org.eclipse.xtext:org.eclipse.xtext.xbase.ide:${xtextVersion}"
+}

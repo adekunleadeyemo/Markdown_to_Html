@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="markdownDSL" nsURI="http://www.dsl.miniproject/markdown/MarkdownDSL"
+    nsPrefix="markdownDSL">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" upperBound="-1"
+        eType="#//Document" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Document">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="texts" eType="#//Text"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" eType="#//Entity"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Text">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="headings" eType="#//Heading"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paragraphs" eType="#//Paragraph"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="blockquotes" eType="#//Blockquote"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="images" eType="#//Image"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tables" eType="#//Table"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lists" eType="#//Lists"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horizonrules" eType="#//Horizonrule"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="emoticons" eType="#//Emoticon"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Heading">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="h1s" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="h2s" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Paragraph">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
+        eType="#//Plaintext" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boldtext" upperBound="-1"
+        eType="#//Bold" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="italictext" upperBound="-1"
+        eType="#//Italic" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textstrike" upperBound="-1"
+        eType="#//Strikethrough" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Plaintext">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bold">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Italic">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Strikethrough">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Lists">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ol" eType="#//Ordered"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ul" eType="#//Unordered"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Unordered">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boldtext" eType="#//Bold"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="italictext" eType="#//Italic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textstrike" eType="#//Strikethrough"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ordered">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boldtext" eType="#//Bold"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="italictext" eType="#//Italic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textstrike" eType="#//Strikethrough"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Blockquote">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="block" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Image">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Table">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thr" upperBound="-1" eType="#//Thr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tbody" upperBound="-1"
+        eType="#//Tbody" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Thr">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boldtext" eType="#//Bold"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="italictext" eType="#//Italic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textstrike" eType="#//Strikethrough"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tbody">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boldtext" eType="#//Bold"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="italictext" eType="#//Italic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textstrike" eType="#//Strikethrough"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Horizonrule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Emoticon">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,12 @@
+#
+#Fri Dec 17 02:08:16 GMT 2021
+derivedResources=.gradle\:build\:miniproject.dsl.markdown/build\:miniproject.dsl.markdown.ide/build\:miniproject.dsl.markdown.web/build
+linkedResources=
+classpath=<?xml version\="1.0" encoding\="UTF-8"?>\n<classpath>\n</classpath>\n
+managedNatures=
+buildDir=build
+managedBuilders=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><commands/>
+buildScriptPath=build.gradle
+subprojectPaths=miniproject.dsl.markdown\:miniproject.dsl.markdown.ide\:miniproject.dsl.markdown.web
+hasAutoBuildTasks=false
+gradleVersion=5.6.3

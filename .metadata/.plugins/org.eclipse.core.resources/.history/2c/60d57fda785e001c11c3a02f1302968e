@@ -1,0 +1,89 @@
+grammar miniproject.dsl.markdown.MarkdownDSL with org.eclipse.xtext.common.Terminals
+
+generate markdownDSL "http://www.dsl.miniproject/markdown/MarkdownDSL"
+
+Model:
+	(element+=Document)*
+	;
+
+Document:
+	(texts=Text)|(entities=Entity)
+	;
+
+Text:
+	(headings=Heading)|(paragraphs=Paragraph)
+;
+
+Entity:
+	(blockquotes=Blockquote)|(images=Image)|(tables=Table)|(lists=Lists)|(horizonrules=Horizonrule)|emoticons=Emoticon	
+;
+
+Heading:
+	('#' h1s=STRING)|('##' h2s=STRING)
+;
+
+Paragraph:
+	(content+=Plaintext)+ (boldtext+=Bold)* (italictext+=Italic)* (textstrike+=Strikethrough)*
+;
+
+Plaintext:
+	content=STRING
+;
+Bold:
+	'**'content=STRING'**'	
+	
+;
+
+Italic:
+	'*' content=STRING '*'
+;
+
+
+Strikethrough:
+	'~~' content=STRING '~~'
+;
+
+Lists:
+	(ol=Ordered)|(ul=Unordered)
+;
+
+Unordered:
+	type='*' (content=STRING) (boldtext=[Bold])? (italictext=[Italic])? (textstrike=[Strikethrough])?
+;
+
+Ordered:
+	type=INT (content=STRING) (boldtext=[Bold])? (italictext=[Italic])? (textstrike=[Strikethrough])? 
+;
+
+
+Blockquote:
+	      (block+='>')+ 
+;
+
+Image:
+ '!['name=STRING']('url=STRING')'	
+;
+
+Table:
+	(thr+=Thr)+'|' 
+	('|---'('-')* )+ '|'
+ 	(tbody+=Tbody)+'|'
+;
+
+Thr:
+	('|')(content=STRING) (boldtext=[Bold])? (italictext=[Italic])? (textstrike=[Strikethrough])?
+;
+
+Tbody:
+	('|')(content=STRING)  (boldtext=[Bold])? (italictext=[Italic])? (textstrike=[Strikethrough])?
+;
+
+Horizonrule:
+	hr='---'('-')*
+;
+
+Emoticon:
+	 ':'content=STRING':'
+;
+
+

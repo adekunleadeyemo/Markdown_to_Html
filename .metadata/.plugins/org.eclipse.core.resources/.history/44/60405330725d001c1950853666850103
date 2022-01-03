@@ -1,0 +1,87 @@
+grammar miniproject.dsl.markdown.MarkdownDSL with org.eclipse.xtext.common.Terminals
+
+generate markdownDSL "http://www.dsl.miniproject/markdown/MarkdownDSL"
+
+Model:
+	(element+=Document)*
+	;
+
+Document:
+	(texts=Text)|(entities=Entity)
+	;
+
+Text:
+	(headings=Heading)|(paragraphs=Paragraph)|(lists=Lists)
+;
+
+Entity:
+	(blockquotes=Blockquote)|(images=Image)|(tables=Table)	
+;
+
+Heading:
+	(h1s=H1)|(h2s=H2)
+;
+
+H1:
+	'#' content=STRING
+;
+
+H2:
+	'##' content=STRING
+;
+
+Paragraph:
+	(content+=Plaintext) + (boldtext+=Bold)* (italictext+=Italic)* (textstrike+=Strikethrough)*
+;
+
+Plaintext:
+	content=STRING
+;
+Bold:
+	'**'content=STRING'**'	
+	
+;
+
+Italic:
+	'*' content=STRING '*'
+;
+
+
+Strikethrough:
+	'~~' content=STRING '~~'
+;
+
+Lists:
+	(ol+=Ordered)+|(ul+=Unordered)+
+;
+
+Unordered:
+	'*' content=STRING 
+;
+
+Ordered:
+	num=INT content=STRING 
+;
+
+
+Blockquote:
+	       ('>')+ (content=[Text])?
+;
+
+Image:
+ '!['name=STRING']('url=STRING')'	
+;
+
+Table:
+	(thr+=Thr)+ '|' 
+	('|---'('-')* )+ '|'
+ 	(tbody+=Tbody)+'|'
+;
+
+Thr:
+	'|' (content=STRING)
+;
+
+Tbody:
+	'|' (content=[Plaintext])
+;

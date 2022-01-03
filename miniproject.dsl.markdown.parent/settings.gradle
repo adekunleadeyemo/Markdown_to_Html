@@ -1,0 +1,3 @@
+include 'miniproject.dsl.markdown'
+include 'miniproject.dsl.markdown.ide'
+include 'miniproject.dsl.markdown.web'

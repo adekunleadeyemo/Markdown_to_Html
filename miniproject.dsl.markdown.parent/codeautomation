@@ -1,0 +1,284 @@
+package co7217.dsl.ucd.generator
+
+/**
+ * Serialization of entities using the DSL: used in slides
+ */
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.resource.XtextResourceSet
+
+import com.google.inject.Injector
+import co7217.dsl.ucd.UseCaseDSLStandaloneSetup
+import co7217.dsl.ucd.useCaseDSL.Diagram
+import co7217.dsl.ucd.useCaseDSL.Actors
+import co7217.dsl.ucd.useCaseDSL.UseCases
+import co7217.dsl.ucd.useCaseDSL.UseCase
+import co7217.dsl.ucd.useCaseDSL.Actor
+import co7217.dsl.ucd.useCaseDSL.Case
+
+
+
+import submission_helper.SubmissionHelper
+
+class submission_solution {
+	
+		def static void main(String[] args) {
+		def path = 'src/main/resources/example1.ucd'
+		//def path2 = 'src/main/resources/example2.ucd'
+		//solution(path)
+		//solution(path2)
+		/**
+		 * TODO: update your username
+		 */
+		SubmissionHelper.check_solution('aa1283', 'week_19', solution);
+	}
+	
+	def static solution = { path ->
+		String text = ''
+		
+		// do this only once per application
+		Injector injector = new UseCaseDSLStandaloneSetup().createInjectorAndDoEMFRegistration();
+		
+		// obtain a resourceset from the injector
+		XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
+		
+		// load a resource by URI, in this case from the file system
+		Resource resource = resourceSet.getResource(URI.createFileURI(path), true);
+		
+		Diagram model = resource.getContents().get(0)
+		
+		/**
+		 * TODO: call your code generator
+		 */
+		text += traverse(model)
+		
+		//println(text)
+		
+		text
+	}	
+	
+	def static String traverse(List<EObject> list) {
+		String text = ''
+		for (obj in list) {
+			text += traverse(obj)
+		}
+		text
+	}
+	
+	
+	def static String traverse(EObject obj) {	
+		String text = ''
+		switch(obj) {
+			
+			case Model :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text+= traverse(obj.element)
+				break
+				
+			case Document:
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				 if(obj.texts!=null){
+				 
+					text += traverse(obj.texts)
+					break
+				}
+				else{
+					tex+=traverse(obj.entitys)
+				}
+				
+			case Text :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				 if(obj.headings!=null){
+				 	text+=traverse(obj.headings) 
+					break		
+				 }
+				 else if(obj.paragraphs!=null){
+			 		text+=traverse(obj.paragraphs) 
+					break	
+				 }
+				  else{
+			 		text+=traverse(obj.lists) 
+					break	
+				 }
+				
+			case Entity :
+			/**
+			 * TODO: write any code that may be missing here
+			 */
+				 if(obj.blockquotes!=null){
+				 	text+=traverse(obj.blockquotes) 
+					break		
+				 }
+				 else if(obj.images!=null){
+			 		text+=traverse(obj.images) 
+					break	
+				 }
+				  else{
+			 		text+=traverse(obj.tables) 
+					break	
+				 }
+		 	
+		 	case Heading :
+			/**
+			 * TODO: write any code that may be missing here
+			 */
+				 if(obj.h1s!=null){
+				 	text+='<h1>' + traverse(obj.h1s) + '</h1>' 
+					break		
+				 }
+			  	else{
+			 		text+='<h2>' + traverse(obj.h2s) + '</h2>' 
+					break	
+				 }
+			
+			case Paragraph :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text+= '<p>' + traverse(obj.content) + traverse(obj.boldtext) + traverse(obj.italictext) + traverse(obj.textstrike) + '</p>'
+				break
+			
+			case Bold :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text += generate(obj)
+				break
+			
+			case Italic :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text += generate(obj)
+				break	
+			
+			case Strikethrough :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text += generate(obj)
+				break
+			
+					 	
+		 	case List :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				 if(obj.ol!=null){
+				 	text+='<ul>' + traverse(obj.ul) + '</ul>' 
+					break		
+				 }
+			  	else{
+			 		text+='<ol>' + traverse(obj.ol) + '</ol>' 
+					break	
+				 }
+			
+			case Unordered :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text += generate(obj)
+				break	
+			
+			case ordered :
+				/**
+				 * TODO: write any code that may be missing here
+					 */
+				text += generate(obj)
+				break
+			
+			case Blockquote :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+			 	text+= '<blockquote>:' + traverse(obj.content) 
+				break	
+	
+			case Image :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+			 	text += generate(obj)
+				break	
+			
+		
+			case Table :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text+= '<table>' + traverse(obj.thrs) + traverse(obj.tbodys) + '</table>'
+				break
+			
+			case Thr :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text += generate(obj)
+				break
+		
+			case Tbody :
+				/**
+				 * TODO: write any code that may be missing here
+				 */
+				text += generate(obj)
+				break
+		
+		}
+		
+		
+		
+		text
+	}
+		
+	def static generate(EObject obj) {
+		String text = ''
+        switch(obj) {
+			case Bold :
+				text += """(${obj.name})"""
+				break
+				
+			case Actor :
+				text += """:${obj.name}:"""
+				if(obj.superType != null) {
+					text += """ -up-|>Guest"""
+				}
+				text += obj.action.collect {
+					"""${obj.name} --> ${it.name}"""
+				}.join("")
+				break
+				
+			case Case:
+				text += """${obj.name} --> ${obj.name}"""
+				break
+			
+			case Case:
+				text += """${obj.name} --> ${obj.name}"""
+				break
+			
+			case Case:
+				text += """${obj.name} --> ${obj.name}"""
+				break		
+			
+			case Case:
+				text += """${obj.name} --> ${obj.name}"""
+				break
+		
+			case Case:
+				text += """${obj.name} --> ${obj.name}"""
+				break
+			
+			case Case:
+				text += """${obj.name} --> ${obj.name}"""
+				break
+		}
+	text
+	
+	}
+}
