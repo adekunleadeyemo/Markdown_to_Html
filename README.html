@@ -1,40 +1,16 @@
 
+
+
+
 **Group 119 Agile Mini-Project 2**
 
 #purpose of the project
  To automate the code generation of HTML syntax from  a flavoured markdown DSL 
 
-#Exercise 0
-**Mark 3/4**
+#Credit
 
-#Exercise 1
-**Mark: 15/15**
+The DSL project is based on a template project provided by Dr Artur Boronat, int the module CO7217 Agile Cloud Automation, University of Leicester.
 
-**Slide 6 and 9** shows strong motivation for the project, while, **slide 7** shows some references to factual 
-data from independently researched sources (news, ITmagazines/journals), **slide 8** summarily talks about the methodology, this shows the linking between the domain modelling, grammar design and evaluation, the **slide 10**  shows  more details of the methodology and various tools used in the methodology.
-**Slide 5** shows additional context, with examples.
-
-#Exercise 2
-**Mark 9/10**
-**Slides 13 and 14** shows detailed enumeration of the domain model concepts and properties up to the same level of complexity as that of the  example DSLs in the workhseet
-
-#Exercise 3
-**Mark 15/15**
-
-The xtext grammar for this project, can be found in the  "miniproject.dsl.markdown.parent" folder, where from scratch, the rules for the DSL were implemented, with a grammar of more than 10 concepts, 
-**Slide 16**, shows an evidence of the DSL running on a Web browser, with the address gotten from compiling the xtext artifacts with jetty run, this slides also shows a frigment of the test cases generated, to enable an iterative testing, based on  kolbs's Cycle of experiencial learning. **slide 17**, shows another snippet of the xtext grammar, in particular concrete syntax of the rules for the markdownDSL table, shown on this slide, are cross references, containment reference, optional syntax etc, the '->' rule which iS a syntax, beyond what may be expected in this module, this was researched during the process of iterative testing, as shown on the other fragment of test cases shown on this slide.
-
-#Exercise 4
-**Mark 25/25**
-
-**Slide 20** contains few important code snippets, the picture on the top left shows how we instantiate a new injector Class in order to parse the Model generated from the xtext in form of a list, in order for us to adopt the traversal strategy, the bottom left image, shows the traverse function which takes the Model as  input, in form of a list of object, and this also contains a for loop, inside the for loop contains another traverse function, which handles each object in the list and returns  a string to the text variable. furthermore the image on the right shows a code snippet of the traverse function, which handles each object in the list, this shows the instance of the entity object case, due to the object having multiple extrinsic property, we therefore implemented a **if and else statement**, to check which of the containing object is not null, so we can traverse that object.
- 
-**Slide 21** this shows a code snippet of an **Emoticon case** in the traverse function, which takes us to the generate function, the generate function for the  Emoticon, adds a layer of complexity, in the sense that we implemented a nested switch statement with the generate function switch statement, in order to handle each of the possible emoji text from the markdown DSL, thereby converting it to unicode characters that the html file can understand. the right image shows the web view of the Html syntax, generated from running the output files generated on a web browser
-
-#Exercise
-**Mark 10/10**
-
-**slide 24** Shows additional research done on the problem domain, with **Slide 25** showing some inference of this research, **Slide 26, 27, 28** shows a systematic evaluation of all the features of the DSL input, code parser, code generator and output code **slide 29 and 30**  covers the key takeaways accompanied by references in **Slide 31**
 
 
 
